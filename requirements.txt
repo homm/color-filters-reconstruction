@@ -1,0 +1,2 @@
+numpy
+pillow>=4.0
