@@ -13,14 +13,14 @@ Try to guess which one is which.
 
 <img src="./static/reconstruction.jpg" width="400" alt="reconstruction"> <img src="./static/inst.jpg" width="400" alt="inst">
 
-Source image:
-
-<img src="./static/source.jpg" width="400" alt="source">
-
-To compare, this is the result of the same filter from
+To compare, this is the result of the **filter with same name** from
 a commercial set of Instagram-like filters.
 
 <img src="./static/foreign.jpg" width="400" alt="foreign">
+
+[Source image](./static/source.jpg)
+
+## How it works
 
 This method based on [three-dimensional lookup tables][wiki-luts]
 and their two-dimensional representation: [hald images][hald-image].
