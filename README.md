@@ -40,11 +40,12 @@ This method can restore color transformations only where
 no other variables are used for manipulations.
 For example, vignetting, scratches, gradients and watermarks can't be captured.
 It also captures wrong if different filters are used for transformations
-in different parts.
+in different parts of an image.
 
 ## Requirements
 
-To generate and process hald images Python interpreter with pip is required.
+To generate and process hald images you will need git
+and a Python interpreter with pip.
 
 ```bash
 $ git clone https://github.com/homm/color-transformations-reconstruction.git
@@ -64,7 +65,7 @@ You can apply resulting hald images using GraphicsMagick.
 
     This will create `hald.5.png` file.
     The number in filename is square root of 3D table size.
-    For example, 5 means 25*25*25 lookup table.
+    For example, 5 means 25×25×25 lookup table.
 
     <img src="./raw/0.original.png" width="400" alt="original">
 
