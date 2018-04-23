@@ -54,7 +54,7 @@ $ pip install -r ./requirements.txt
 
 You can apply resulting hald images using GraphicsMagick.
 
-## Operating principle
+## Guide
 
 1. You need to create the identity image. For this simple run:
 
@@ -62,11 +62,40 @@ You can apply resulting hald images using GraphicsMagick.
     $ ./bin/generate.py
     ```
 
-    This will create `hald.5.png` file. 
+    This will create `hald.5.png` file.
+    The number in filename is square root of 3D table size.
+    For example, 5 means 25*25*25 lookup table.
 
     <img src="./raw/0.original.png" width="400" alt="original">
 
+    This file doesn't look like any other hald images.
+    This image is specially designed to resist any distortions
+    which may occur during transformation, such as vignetting,
+    scratches, gradients and JPEG artifacts.
+
 2. Process the identity image with target software.
+    Speaking of Instagram, you need to transfer identity image
+    to the phone and post the image with one of the filters applied.
+    After that, you'll see identity image with a filter in your camera roll.
+    You need to transfer it back.
+
+    Before continuing, make sure that identity image with a filter
+    has exactly the same resolution as source identity image.
+
+3. Convert identity image with a filter to the true hald image:
+
+    ```bash
+    $ ./bin/convert.py ./raw/1.Clarendon.jpg ./halds/
+    ```
+
+    Where `./halds/` is output folder.
+
+4. That is it!
+    Now you can apply resulting hald image to any other image.
+
+    ```bash
+    $ gm convert ./sample.jpg -hald-clut ./halds/1.Clarendon.png ./out.jpeg
+    ```
 
 
   [wiki-luts]: https://en.wikipedia.org/wiki/3D_lookup_table
