@@ -13,4 +13,6 @@ outfile = os.path.splitext(os.path.basename(sys.argv[2]))[0]
 
 hald = load_hald_image(sys.argv[2])
 im = Image.open(sys.argv[1])
-im.filter(hald).save(os.path.join(dirname, outfile + '.jpg'))
+icc_profile = im.info.get('icc_profile')
+im = im.filter(hald)
+im.save(os.path.join(dirname, outfile + '.jpg'), icc_profile=icc_profile)
