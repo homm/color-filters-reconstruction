@@ -78,7 +78,9 @@ You can apply resulting hald images using GraphicsMagick.
     Speaking of Instagram, you need to transfer identity image
     to the phone and post the image with one of the filters applied.
     After that, you'll see identity image with a filter in your camera roll.
-    You need to transfer it back.
+    Then you need to transfer it back.
+
+    <img src="./raw/1.Clarendon.jpg" width="400" alt="Clarendon">
 
     Before continuing, make sure that identity image with a filter
     has exactly the same resolution as source identity image.
@@ -91,12 +93,16 @@ You can apply resulting hald images using GraphicsMagick.
 
     Where `./halds/` is output folder.
 
+    <img src="./halds/1.Clarendon.png" alt="Clarendon">
+
 4. That is it!
     Now you can apply resulting hald image to any other image.
 
     ```bash
     $ gm convert ./sample.jpg -hald-clut ./halds/1.Clarendon.png ./out.jpeg
     ```
+
+    <img src="./static/clarendon.jpg" width="400" alt="Clarendon">
 
 
   [wiki-luts]: https://en.wikipedia.org/wiki/3D_lookup_table
