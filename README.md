@@ -102,7 +102,7 @@ You can apply resulting hald images using GraphicsMagick.
     $ gm convert ./sample.jpg -hald-clut ./halds/1.Clarendon.png ./out.jpeg
     ```
 
-    <img src="./static/clarendon.jpg" width="400" alt="Clarendon">
+    <img src="./static/sample.jpg" width="400" alt="sample"> <img src="./static/clarendon.jpg" width="400" alt="Clarendon">
 
 
   [wiki-luts]: https://en.wikipedia.org/wiki/3D_lookup_table
