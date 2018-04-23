@@ -5,8 +5,17 @@ and very accurate reconstruction of color filters used
 in image processing software.
 A vivid example of such filters is Instagram filters.
 
-This is the first and only attempt to accurately reconstruct
-color filters using robust methods instead of manual color correction.
+People like Instagram filters. They are trying to
+[reproduce](https://github.com/girliemac/Filterous)
+them [again](https://github.com/girliemac/filterous-2)
+and [again](https://github.com/acoomans/instagram-filters).
+And [again](https://github.com/lukexyz/CV-Instagram-Filters)
+and [again](https://www.practicepython.org/blog/2016/12/20/instagram-filters-python.html).
+And [again](https://code.tutsplus.com/tutorials/create-instagram-filters-with-php--net-24504)
+and [again](https://picturepan2.github.io/instagram.css/).
+
+The problem is most of this attempts based on manual color correction.
+This is the only accurate reconstruction of color filters using a robust method.
 For illustration, one of the following images obtained using Instagram filter
 and second using applying accurate reconstruction.
 Try to guess which one is which.
