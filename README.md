@@ -1,4 +1,4 @@
-# Accurate Color Transformations Reconstruction
+# Accurate Color Filters Reconstruction
 
 This repository includes tools which could be used for semi-automatically
 and very accurate reconstruction of color filters used
@@ -13,8 +13,8 @@ And [again](https://github.com/lukexyz/CV-Instagram-Filters)
 and [again](https://www.practicepython.org/blog/2016/12/20/instagram-filters-python.html).
 And [again](https://code.tutsplus.com/tutorials/create-instagram-filters-with-php--net-24504)
 and [again](https://picturepan2.github.io/instagram.css/).
-
 The problem is most of this attempts based on manual color correction.
+
 This is the only accurate reconstruction of color filters using a robust method.
 For illustration, one of the following images obtained using Instagram filter
 and second using applying accurate reconstruction.
