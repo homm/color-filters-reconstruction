@@ -59,7 +59,7 @@ and a Python interpreter with pip.
 ```bash
 $ git clone https://github.com/homm/color-transformations-reconstruction.git
 $ cd color-transformations-reconstruction
-$ pip install -r ./requirements.txt 
+$ pip install -r requirements.txt 
 ```
 
 You can apply resulting hald images using GraphicsMagick.
@@ -97,10 +97,10 @@ You can apply resulting hald images using GraphicsMagick.
 3. Convert identity image with a filter to the true hald image:
 
     ```bash
-    $ ./bin/convert.py ./raw/1.Clarendon.jpg ./halds/
+    $ ./bin/convert.py raw/1.Clarendon.jpg halds/
     ```
 
-    Where `./halds/` is output folder.
+    Where `halds/` is output folder.
 
     <img src="./halds/1.Clarendon.png" alt="Clarendon">
 
@@ -108,7 +108,7 @@ You can apply resulting hald images using GraphicsMagick.
     Now you can apply resulting hald image to any other image.
 
     ```bash
-    $ gm convert ./sample.jpg -hald-clut ./halds/1.Clarendon.png ./out.jpeg
+    $ gm convert sample.jpg -hald-clut halds/1.Clarendon.png out.jpeg
     ```
 
     <img src="./static/sample.jpg" width="400" alt="sample"> <img src="./static/clarendon.jpg" width="400" alt="Clarendon">
