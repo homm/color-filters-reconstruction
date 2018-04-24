@@ -70,7 +70,7 @@ if __name__ == '__main__':
         description='Convert raw hald image to actual hald.')
     parser.add_argument('raw')
     parser.add_argument('dir', default='./', nargs='?')
-    parser.add_argument('-s', '--size', type=int, default=5, nargs='?')
+    parser.add_argument('-s', '--size', type=int, default=5)
     parser.add_argument('-x', '--scale', type=int, default=8)
     parser.add_argument('-o', '--out')
     parser.add_argument('-m', '--method', choices=('mean', 'median'),
