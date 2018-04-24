@@ -24,7 +24,7 @@ def normalize_raw(im, imsize, scale=8):
     return im
 
 
-def combine_raw(im, method='median', smooth=0):
+def combine_raw(im, method='median'):
     wsize, hsize = im.width // 2, im.height // 2
     rgb = numpy.array(im)
     rgb = numpy.stack([
@@ -33,10 +33,7 @@ def combine_raw(im, method='median', smooth=0):
         rgb[hsize:hsize*2, 0    :wsize],
         rgb[hsize:hsize*2, wsize:wsize*2],
     ], axis=-1)
-    rgb = getattr(numpy, method)(rgb, axis=-1)
-    if smooth:
-        rgb = smooth_rgb(rgb, smooth)
-    return Image.fromarray(rgb.astype(numpy.uint8))
+    return getattr(numpy, method)(rgb, axis=-1)
 
 
 def smooth_rgb(rgb, sigma):
@@ -60,6 +57,14 @@ def smooth_rgb(rgb, sigma):
     return rgb
 
 
+def tune_rgb(rgb, contrast=0, brightness=0):
+    if contrast:
+        rgb = (rgb - 127.5) * (contrast + 1) + 127.5
+    if brightness:
+        rgb += brightness * 255.0
+    return rgb
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Convert raw hald image to actual hald.')
@@ -71,11 +76,19 @@ if __name__ == '__main__':
     parser.add_argument('-m', '--method', choices=('mean', 'median'),
                         default='median')
     parser.add_argument('--smooth', type=float, default=0)
+    parser.add_argument('--contrast', type=float, default=0)
+    parser.add_argument('--brightness', type=float, default=0)
     args = parser.parse_args()
 
     im = Image.open(args.raw)
     im = normalize_raw(im, args.size**3, scale=args.scale)
-    im = combine_raw(im, method=args.method, smooth=args.smooth)
+    rgb = combine_raw(im, method=args.method)
+    if args.smooth:
+        rgb = smooth_rgb(rgb, args.smooth)
+    if args.contrast or args.brightness:
+        rgb = tune_rgb(rgb, contrast=args.contrast, brightness=args.brightness)
+    rgb = rgb.clip(0, 255).astype(numpy.uint8)
+    im = Image.fromarray(rgb)
 
     outfile = args.out
     if not outfile:
