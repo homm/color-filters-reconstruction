@@ -1,4 +1,4 @@
-# Accurate Color Filters Reconstruction
+# Accurate Instagram Filters Reconstruction
 
 This repository includes tools which could be used for semi-automatically
 and very accurate reconstruction of color filters used
@@ -47,7 +47,7 @@ of video editing software.
 
 ## Limitation
 
-This method can restore color transformations only where
+This method can capture color transformations only where
 no other variables are used for manipulations.
 For example, vignetting, scratches, gradients and watermarks can't be captured.
 It also captures wrong if different filters are used for transformations
@@ -56,7 +56,7 @@ in different parts of an image.
 
 ## Requirements
 
-To generate and process hald images you will need git
+To generate and convert hald images you will need git
 and a Python interpreter with pip.
 
 ```bash
@@ -65,7 +65,10 @@ $ cd color-transformations-reconstruction
 $ pip install -r requirements.txt 
 ```
 
-You can apply resulting hald images using GraphicsMagick.
+Prepared hald images coud be applyed to any image in your application
+using GraphicsMagick bindings for Python, Ruby, PHP, Javascript™
+and other programming languages or using command line interface.
+No software from this repository is required.
 
 
 ## Guide
