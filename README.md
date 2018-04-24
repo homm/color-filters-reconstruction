@@ -126,26 +126,45 @@ If the target filter haves heavy distortion on the local level
 or significant gradients in the center of an image,
 some undesired effects may occur.
 The most noticeable is color banding.
+This is an original image and image processed with the Hudson filter,
+one of the most problematic from this point of view.
+
+```bash
+# Create hald image from processed by Instagram identity hald image
+$ ./bin/convert.py raw/15.Hudson.jpg halds/
+# Apply hald image to the sample image
+$ gm convert girl.jpg -hald-clut halds/15.Hudson.png girl.15.jpg
+```
 
 <img src="./static/girl.jpg" width="400" alt="original"> <img src="./static/girl.15.jpg" width="400" alt="hudson">
 
-If you look closely at the identity image with such filter
-obtained on the second step, you'll see that it doesn't look healthy.
+On the processed image many objects look flat and posterized:
+face, hair, chairs in the background.
+While posterization is one of the common image filters,
+it is not a part of the Hudson filter.
+
+If you look closely at the [image with Hudson filter](./raw/15.Hudson.jpg),
+you'll see that it looks noise and this is the root of the problem.
 
 <img src="./static/hudson.jpg" width="400" alt="hudson">
 
-That is why there is a tool which can reduce the noise.
-On the third step, you can ask `convert.py` to apply a gaussian blur
-on the three-dimensional lookup table.
+Fortunately, you can ask `convert.py` to apply a gaussian blur
+on the three-dimensional lookup table to reduce the noise.
 You'll need to install [scipy][scipy] to continue.
 
 ```bash
+# This needs only once
 $ pip install scipy
 $ ./bin/convert.py raw/15.Hudson.jpg halds/ --smooth 1.5
+$ gm convert girl.jpg -hald-clut halds/15.Hudson.png girl.15.fixed.jpg
 ```
 
 <img src="./static/girl.15.jpg" width="400" alt="hudson"> <img src="./static/girl.15.fix.jpg" width="400" alt="fixed hudson">
 
+You can find additional options for `convert.py` with
+`./bin/convert.py --help`.
+
+Have fun with reverse engineering!
 
   [wiki-luts]: https://en.wikipedia.org/wiki/3D_lookup_table
   [hald-image]: http://www.quelsolaar.com/technology/clut.html
