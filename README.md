@@ -78,8 +78,8 @@ You can apply resulting hald images using GraphicsMagick.
 
     <img src="./raw/0.original.png" width="400" alt="original">
 
-    This file doesn't look like any other hald images.
-    This image is specially designed to resist any distortions
+    This file doesn't look like other hald images.
+    This image is specially designed to oppose distortions
     which may occur during transformation, such as vignetting,
     scratches, gradients and JPEG artifacts.
 
@@ -105,7 +105,7 @@ You can apply resulting hald images using GraphicsMagick.
     <img src="./halds/1.Clarendon.png" alt="Clarendon">
 
 4. That is it!
-    Now you can apply resulting hald image to any other image.
+    Now you can apply resulting hald image to any image.
 
     ```bash
     $ gm convert sample.jpg -hald-clut halds/1.Clarendon.png out.jpeg
@@ -113,6 +113,9 @@ You can apply resulting hald images using GraphicsMagick.
 
     <img src="./static/sample.jpg" width="400" alt="sample"> <img src="./static/clarendon.jpg" width="400" alt="Clarendon">
 
+## Advanced tricks
+
+While default parameters 
 
   [wiki-luts]: https://en.wikipedia.org/wiki/3D_lookup_table
   [hald-image]: http://www.quelsolaar.com/technology/clut.html
