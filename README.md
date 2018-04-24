@@ -29,6 +29,7 @@ a commercial set of Instagram-like filters.
 
 [Source image](./static/source.jpg)
 
+
 ## How it works
 
 This method based on [three-dimensional lookup tables][wiki-luts]
@@ -43,6 +44,7 @@ GraphicsMagick and Adobe Photoshop (with plugins) and converted to
 3D LUT cube file format, which is common for a great number
 of video editing software.
 
+
 ## Limitation
 
 This method can restore color transformations only where
@@ -50,6 +52,7 @@ no other variables are used for manipulations.
 For example, vignetting, scratches, gradients and watermarks can't be captured.
 It also captures wrong if different filters are used for transformations
 in different parts of an image.
+
 
 ## Requirements
 
@@ -63,6 +66,7 @@ $ pip install -r requirements.txt
 ```
 
 You can apply resulting hald images using GraphicsMagick.
+
 
 ## Guide
 
@@ -111,11 +115,38 @@ You can apply resulting hald images using GraphicsMagick.
     $ gm convert sample.jpg -hald-clut halds/1.Clarendon.png out.jpeg
     ```
 
-    <img src="./static/sample.jpg" width="400" alt="sample"> <img src="./static/clarendon.jpg" width="400" alt="Clarendon">
+    <img src="./static/sample.jpg" width="400" alt="sample"> <img src="./static/sample.1.jpg" width="400" alt="Clarendon">
 
-## Advanced tricks
 
-While default parameters 
+## Advanced tips
+
+While default parameters give high-quality hald filters,
+there are some cases where it is not enough.
+If the target filter haves heavy distortion on the local level
+or significant gradients in the center of an image,
+some undesired effects may occur.
+The most noticeable is color banding.
+
+<img src="./static/girl.jpg" width="400" alt="original"> <img src="./static/girl.15.jpg" width="400" alt="hudson">
+
+If you look closely at the identity image with such filter
+obtained on the second step, you'll see that it doesn't look healthy.
+
+<img src="./static/hudson.jpg" width="400" alt="hudson">
+
+That is why there is a tool which can reduce the noise.
+On the third step, you can ask `convert.py` to apply a gaussian blur
+on the three-dimensional lookup table.
+You'll need to install [scipy][scipy] to continue.
+
+```bash
+$ pip install scipy
+$ ./bin/convert.py raw/15.Hudson.jpg halds/ --smooth 1.5
+```
+
+<img src="./static/girl.15.jpg" width="400" alt="hudson"> <img src="./static/girl.15.fix.jpg" width="400" alt="fixed hudson">
+
 
   [wiki-luts]: https://en.wikipedia.org/wiki/3D_lookup_table
   [hald-image]: http://www.quelsolaar.com/technology/clut.html
+  [scipy]: https://www.scipy.org
