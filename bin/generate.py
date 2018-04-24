@@ -34,10 +34,10 @@ def fortify_hald(hald, scale=8, padding=0.4):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         description='Generates identity hald image.')
-    parser.add_argument('size', type=int, default=5, nargs='?')
-    parser.add_argument('-o', '--out', default='hald.{}.png')
+    parser.add_argument('-s', '--size' type=int, default=5, nargs='?')
     parser.add_argument('-x', '--scale', type=int, default=8)
     parser.add_argument('-p', '--padding', type=float, default=0.4)
+    parser.add_argument('-o', '--out', default='hald.{}.png')
     args = parser.parse_args()
 
     hald = generate_hald(args.size)
