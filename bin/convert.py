@@ -24,7 +24,7 @@ def normalize_raw(im, imsize, scale=8):
     return im
 
 
-def combine_raw(im, method='median'):
+def combine_raw(im, method='median', smooth=0):
     wsize, hsize = im.width // 2, im.height // 2
     rgb = numpy.array(im)
     rgb = numpy.stack([
@@ -34,7 +34,30 @@ def combine_raw(im, method='median'):
         rgb[hsize:hsize*2, wsize:wsize*2],
     ], axis=-1)
     rgb = getattr(numpy, method)(rgb, axis=-1)
+    if smooth:
+        rgb = smooth_rgb(rgb, smooth)
     return Image.fromarray(rgb.astype(numpy.uint8))
+
+
+def smooth_rgb(rgb, sigma):
+    try:
+        import scipy.ndimage
+    except ImportError:
+        print("WARNING: scipy is required for smoothing.\n"
+              "Try the following first:\n\n$ pip install scipy\n")
+        return rgb
+    shape = rgb.shape
+    size = int(round((shape[0] * shape[1]) ** (1.0/3)))
+    assert size**3 == shape[0] * shape[1], "Wrong cube size"
+    rgb = rgb.reshape((size, size, size, 3))
+    r = rgb[:, :, :, 0]
+    g = rgb[:, :, :, 1]
+    b = rgb[:, :, :, 2]
+    r = scipy.ndimage.gaussian_filter(r, sigma, mode='nearest')
+    g = scipy.ndimage.gaussian_filter(g, sigma, mode='nearest')
+    b = scipy.ndimage.gaussian_filter(b, sigma, mode='nearest')
+    rgb = numpy.stack((r, g, b), axis=-1).reshape(shape)
+    return rgb
 
 
 if __name__ == '__main__':
@@ -45,11 +68,14 @@ if __name__ == '__main__':
     parser.add_argument('-s', '--size', type=int, default=5, nargs='?')
     parser.add_argument('-x', '--scale', type=int, default=8)
     parser.add_argument('-o', '--out')
+    parser.add_argument('-m', '--method', choices=('mean', 'median'),
+                        default='median')
+    parser.add_argument('--smooth', type=float, default=0)
     args = parser.parse_args()
 
     im = Image.open(args.raw)
     im = normalize_raw(im, args.size**3, scale=args.scale)
-    im = combine_raw(im)
+    im = combine_raw(im, method=args.method, smooth=args.smooth)
 
     outfile = args.out
     if not outfile:
