@@ -73,46 +73,46 @@ No software from this repository is required.
 
 ## Guide
 
-1. You need to create the identity image. For this simple run:
+1. First, you'll need to create the identity image. Just run:
 
     ```bash
     $ ./bin/generate.py
     ```
 
-    This will create `hald.5.png` file.
-    The number in filename is square root of 3D table size.
-    For example, 5 means 25×25×25 lookup table.
+    This will create a file named `hald.5.png`.
+    The number in the filename stands for the square root of a 3D LUT size.
+    For example, `5` means we're dealing with a `25×25×25` lookup table.
 
     <img src="./raw/0.original.png" width="400" alt="original">
 
     This file doesn't look like other hald images.
-    This image is specially designed to oppose distortions
-    which may occur during transformation, such as vignetting,
-    scratches, gradients and JPEG artifacts.
+    This image is specifically designed to oppose distortions
+    which may occur during transformations such as vignetting,
+    scratches, gradients, and JPEG artifacts.
 
-2. Process the identity image with target software.
-    Speaking of Instagram, you need to transfer identity image
-    to the phone and post the image with one of the filters applied.
-    After that, you'll see identity image with a filter in your camera roll.
-    Then you need to transfer it back.
+2. Process the identity image with a target software you prefer.
+    Speaking of Instagram, you need to transfer the identity
+    image to your device and post that image with one of the filters applied.
+    After that, you'll see filtered identity image in your camera roll.
+    Well, just transfer it back.
 
     <img src="./raw/1.Clarendon.jpg" width="400" alt="Clarendon">
 
-    Before continuing, make sure that identity image with a filter
-    has exactly the same resolution as source identity image.
+    Before continuing, make sure that the resolution of your filtered identity
+    image exactly matches that of the source one.
 
-3. Convert identity image with a filter to the true hald image:
+3. Convert the filtered to the real hald image:
 
     ```bash
     $ ./bin/convert.py raw/1.Clarendon.jpg halds/
     ```
 
-    Where `halds/` is output folder.
+    Where `halds/` is your output directory.
 
     <img src="./halds/1.Clarendon.png" alt="Clarendon">
 
-4. That is it!
-    Now you can apply resulting hald image to any image.
+4. That's it!
+    You can now apply that resulting hald image to any input.
 
     ```bash
     $ gm convert sample.jpg -hald-clut halds/1.Clarendon.png out.jpeg
@@ -123,14 +123,13 @@ No software from this repository is required.
 
 ## Advanced tips
 
-While default parameters give high-quality hald filters,
+While the default parameters provide you with high-quality hald filters,
 there are some cases where it is not enough.
-If the target filter haves heavy distortion on the local level
-or significant gradients in the center of an image,
-some undesired effects may occur.
-The most noticeable is color banding.
-This is an original image and image processed with the Hudson filter,
-one of the most problematic from this point of view.
+
+If the target filter has heavy distortions on the local level or significant
+gradients in the center of an image, some undesired effects may occur.
+The most noticeable one is color banding. This is an original image and the one
+processed with the Hudson-like filter, one of the most problematic in this aspect.
 
 ```bash
 # Create hald image from processed by Instagram identity hald image
@@ -141,22 +140,23 @@ $ gm convert girl.jpg -hald-clut halds/15.Hudson.png girl.15.jpg
 
 <img src="./static/girl.jpg" width="400" alt="original"> <img src="./static/girl.15.jpg" width="400" alt="hudson">
 
-On the processed image many objects look flat and posterized:
+You can notice that in the processed image many objects look flat and posterized:
 face, hair, chairs in the background.
-While posterization is one of the common image filters,
-it is not a part of the Hudson filter.
+While posterization is one of the common image filters, it is not a part of the
+Hudson filter.
 
-If you look closely at the [image with Hudson filter](./raw/15.Hudson.jpg),
-you'll see that it looks noise and this is the root of the problem.
+If you thoroughly look at the
+[image with a Hudson-like filter applied](./raw/15.Hudson.jpg),
+you'll see that it looks noisy, and that's where the problem comes from.
 
 <img src="./static/hudson.jpg" width="400" alt="hudson">
 
-Fortunately, you can ask `convert.py` to apply a gaussian blur
-on the three-dimensional lookup table to reduce the noise.
-You'll need to install [scipy][scipy] to continue.
+Fortunately enough, you can ask `convert.py` to apply a gaussian blur to the
+three-dimensional lookup table to reduce that noise. You'll need to install
+[SciPy][scipy] to continue.
 
 ```bash
-# This needs only once
+# The next line is only needed once
 $ pip install scipy
 $ ./bin/convert.py raw/15.Hudson.jpg halds/ --smooth 1.5
 $ gm convert girl.jpg -hald-clut halds/15.Hudson.png girl.15.fixed.jpg
@@ -164,11 +164,11 @@ $ gm convert girl.jpg -hald-clut halds/15.Hudson.png girl.15.fixed.jpg
 
 <img src="./static/girl.15.jpg" width="400" alt="hudson"> <img src="./static/girl.15.fix.jpg" width="400" alt="fixed hudson">
 
-You can find additional options for `convert.py` with
+You can discover the additional `convert.py` options by executing
 `./bin/convert.py --help`.
 
 Have fun with reverse engineering!
 
-  [wiki-luts]: https://en.wikipedia.org/wiki/3D_lookup_table
-  [hald-image]: http://www.quelsolaar.com/technology/clut.html
-  [scipy]: https://www.scipy.org
+[wiki-luts]: https://en.wikipedia.org/wiki/3D_lookup_table
+[hald-image]: http://www.quelsolaar.com/technology/clut.html
+[scipy]: https://www.scipy.org
