@@ -22,7 +22,7 @@ Try to guess which one is which.
 
 <img src="./static/reconstruction.jpg" width="400" alt="reconstruction"> <img src="./static/inst.jpg" width="400" alt="inst">
 
-To compare, this is the result of applying **the same filter** from
+To compare, here is the result of applying **the same filter** from
 a commercial set of Instagram-like filters.
 
 <img src="./static/foreign.jpg" width="400" alt="foreign">
@@ -32,32 +32,34 @@ a commercial set of Instagram-like filters.
 
 ## How it works
 
-This method based on [three-dimensional lookup tables][wiki-luts]
-and their two-dimensional representation: [hald images][hald-image].
-The idea is very simple: a sample hald image with uniform color distribution
-is processed using target software with unknown color transformation algorithm.
-After processing such hald image could be used as a filter
-for a very accurate approximation for the target color transformation.
+This method is based on
+[three-dimensional lookup tables][wiki-luts] and their two-dimensional
+representation: [hald images][hald-image].
+The core idea is simple: a sample hald image with a uniform color distribution
+is processed using any target software with an unknown color
+transformation algorithm.
+The processed hald image can then be used as a filter for a very accurate
+approximation of that target color transformation.
 
-A resulting hald image could be used in various software such as
-GraphicsMagick and Adobe Photoshop (with plugins) and converted to
-3D LUT cube file format, which is common for a great number
-of video editing software.
+A resulting hald image could then be used in various software such as
+GraphicsMagick or Adobe Photoshop and converted to the
+3D LUT cube file format, which is common in a great number of video editing
+software.
 
 
 ## Limitation
 
-This method can capture color transformations only where
-no other variables are used for manipulations.
-For example, vignetting, scratches, gradients and watermarks can't be captured.
-It also captures wrong if different filters are used for transformations
-in different parts of an image.
+This method can capture color transformations only where no other variables are
+used for manipulations.
+For example, vignetting, scratches, gradients, and watermarks can not be captured.
+It also might be wrong when different filters are applied to different parts of
+a single image.
 
 
 ## Requirements
 
-To generate and convert hald images you will need git
-and a Python interpreter with pip.
+To generate and convert hald images, you will need git and a pip-enabled Python
+interpreter.
 
 ```bash
 $ git clone https://github.com/homm/color-transformations-reconstruction.git
@@ -65,10 +67,9 @@ $ cd color-transformations-reconstruction
 $ pip install -r requirements.txt 
 ```
 
-Prepared hald images coud be applyed to any image in your application
-using GraphicsMagick bindings for Python, Ruby, PHP, Javascript™
-and other programming languages or using command line interface.
-No software from this repository is required.
+The resulting hald images can be applied to any visuals in your application
+using GraphicsMagick bindings for Python, Ruby, PHP, JavaScript™, and other
+programming languages or using CLI. No software from this repository is required.
 
 
 ## Guide
