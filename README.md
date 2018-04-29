@@ -1,11 +1,11 @@
 # Accurate Instagram Filters Reconstruction
 
-This repository includes tools which could be used for semi-automatically
-and very accurate reconstruction of color filters used
-in image processing software.
-A vivid example of such filters is Instagram filters.
+There's a bunch of apps out there (e.g., Instagram) allowing you to apply color filters to images.
+You might be interested in cloning their behavior: reconstruct them. This
+repository holds tools for semi-automatically and very accurately reconstructing
+color filters.
 
-People like Instagram filters. They are trying to
+The truth is folks like Instagram filters. They are trying to
 [reproduce](https://github.com/girliemac/Filterous)
 them [again](https://github.com/girliemac/filterous-2)
 and [again](https://github.com/acoomans/instagram-filters).
@@ -13,12 +13,13 @@ And [again](https://github.com/lukexyz/CV-Instagram-Filters)
 and [again](https://www.practicepython.org/blog/2016/12/20/instagram-filters-python.html).
 And [again](https://code.tutsplus.com/tutorials/create-instagram-filters-with-php--net-24504)
 and [again](https://picturepan2.github.io/instagram.css/).
-The problem is most of this attempts based on manual color correction.
+The problem with the attempts is they mostly deal with manually correcting
+colors.
 
 This is the only accurate reconstruction of color filters using a robust method.
-For illustration, one of the following images obtained using Instagram filter
-and second using applying accurate reconstruction.
-Try to guess which one is which.
+For instance, one of the following images was obtained using Instagram filter,
+and another using an accurate reconstruction. Try guessing which one was
+reconstructed.
 
 <img src="./static/reconstruction.jpg" width="400" alt="reconstruction"> <img src="./static/inst.jpg" width="400" alt="inst">
 
