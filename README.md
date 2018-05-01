@@ -14,10 +14,11 @@ and [again](https://www.practicepython.org/blog/2016/12/20/instagram-filters-pyt
 And [again](https://code.tutsplus.com/tutorials/create-instagram-filters-with-php--net-24504)
 and [again](https://picturepan2.github.io/instagram.css/).
 The problem with the attempts is they mostly deal with manually correcting
-colors.
+colors. For me, it was more interesting to find the solution using
+more robust method and math.
 
 This looks like the only attempt to the accurate reconstruction
-of color filters using a robust method.
+of color filters.
 For instance, one of the following images was obtained using Instagram filter,
 and another using an accurate reconstruction. Try guessing which one was
 reconstructed.
@@ -43,7 +44,8 @@ The processed hald image can then be used as a filter for a very accurate
 approximation of that target color transformation.
 
 A resulting hald image could then be used in various software such as
-GraphicsMagick or Adobe Photoshop and converted to the
+GraphicsMagick or Adobe Photoshop. You can use it in your iOS or macOS apps 
+with [CocoaLUT][CocoaLUT]. Hald images could be converted to the
 3D LUT cube file format, which is common in a great number of video editing
 software.
 
@@ -174,3 +176,4 @@ Have fun with reverse engineering!
 [wiki-luts]: https://en.wikipedia.org/wiki/3D_lookup_table
 [hald-image]: http://www.quelsolaar.com/technology/clut.html
 [scipy]: https://www.scipy.org
+[CocoaLUT]: http://cocoadocs.org/docsets/CocoaLUT/0.2.31/
