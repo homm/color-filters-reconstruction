@@ -16,7 +16,8 @@ and [again](https://picturepan2.github.io/instagram.css/).
 The problem with the attempts is they mostly deal with manually correcting
 colors.
 
-This is the only accurate reconstruction of color filters using a robust method.
+This looks like the only attempt to the accurate reconstruction
+of color filters using a robust method.
 For instance, one of the following images was obtained using Instagram filter,
 and another using an accurate reconstruction. Try guessing which one was
 reconstructed.
@@ -33,12 +34,11 @@ a commercial set of Instagram-like filters.
 
 ## How it works
 
-This method is based on
+This method provides an accurate color reconstruction, and is based on
 [three-dimensional lookup tables][wiki-luts] and their two-dimensional
 representation: [hald images][hald-image].
 The core idea is simple: a sample hald image with a uniform color distribution
-is processed using any target software with an unknown color
-transformation algorithm.
+is processed using target color filter with an unknown transformation algorithm.
 The processed hald image can then be used as a filter for a very accurate
 approximation of that target color transformation.
 
@@ -93,7 +93,7 @@ programming languages or using CLI. No software from this repository is required
     scratches, gradients, and JPEG artifacts.
 
 2. Process the identity image with a target software you prefer.
-    Speaking of Instagram, you need to transfer the identity
+    Say, if you were using Instagram, you'd have to transfer the identity
     image to your device and post that image with one of the filters applied.
     After that, you'll see filtered identity image in your camera roll.
     Well, just transfer it back.
