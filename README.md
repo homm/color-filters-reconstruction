@@ -14,9 +14,11 @@ and [again](https://www.practicepython.org/blog/2016/12/20/instagram-filters-pyt
 And [again](https://code.tutsplus.com/tutorials/create-instagram-filters-with-php--net-24504)
 and [again](https://picturepan2.github.io/instagram.css/).
 The problem with the attempts is they mostly deal with manually correcting
-colors.
+colors. For me, it was more interesting to find a solution using
+a more robust method and maths.
 
-This is the only accurate reconstruction of color filters using a robust method.
+This looks like the only attempt to provide an accurate
+color filter reconstruction.
 For instance, one of the following images was obtained using Instagram filter,
 and another using an accurate reconstruction. Try guessing which one was
 reconstructed.
@@ -33,17 +35,18 @@ a commercial set of Instagram-like filters.
 
 ## How it works
 
-This method is based on
+This method provides an accurate color reconstruction and is based on
 [three-dimensional lookup tables][wiki-luts] and their two-dimensional
 representation: [hald images][hald-image].
 The core idea is simple: a sample hald image with a uniform color distribution
-is processed using any target software with an unknown color
-transformation algorithm.
+is processed using a target color filter with an unknown transformation algorithm.
 The processed hald image can then be used as a filter for a very accurate
 approximation of that target color transformation.
 
 A resulting hald image could then be used in various software such as
-GraphicsMagick or Adobe Photoshop and converted to the
+GraphicsMagick or Adobe Photoshop.
+You can implement those hald images in your iOS or macOS app
+with [CocoaLUT][CocoaLUT]. Also, hald images could be converted to the
 3D LUT cube file format, which is common in a great number of video editing
 software.
 
@@ -93,7 +96,7 @@ programming languages or using CLI. No software from this repository is required
     scratches, gradients, and JPEG artifacts.
 
 2. Process the identity image with a target software you prefer.
-    Speaking of Instagram, you need to transfer the identity
+    Say, if you were using Instagram, you'd have to transfer the identity
     image to your device and post that image with one of the filters applied.
     After that, you'll see filtered identity image in your camera roll.
     Well, just transfer it back.
@@ -174,3 +177,4 @@ Have fun with reverse engineering!
 [wiki-luts]: https://en.wikipedia.org/wiki/3D_lookup_table
 [hald-image]: http://www.quelsolaar.com/technology/clut.html
 [scipy]: https://www.scipy.org
+[CocoaLUT]: http://cocoadocs.org/docsets/CocoaLUT/0.2.31/
