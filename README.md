@@ -19,9 +19,10 @@ a more robust method and maths.
 
 This looks like the only attempt to provide an accurate
 color filter reconstruction.
-For instance, one of the following images was obtained using Instagram filter,
-and another using an accurate reconstruction. Try guessing which one was
-reconstructed.
+For instance, one of the following images was obtained by applying
+the `Clarendon` Instagram filter to the [source image](./static/source.jpg),
+while another one was derived via an accurate reconstruction.
+Try guessing which one was reconstructed.
 
 <img src="./static/reconstruction.jpg" width="400" alt="reconstruction"> <img src="./static/inst.jpg" width="400" alt="inst">
 
@@ -30,12 +31,10 @@ a commercial set of Instagram-like filters.
 
 <img src="./static/foreign.jpg" width="400" alt="foreign">
 
-[Source image](./static/source.jpg)
-
 
 ## How it works
 
-This method provides an accurate color reconstruction and is based on
+This method is based on
 [three-dimensional lookup tables][wiki-luts] and their two-dimensional
 representation: [hald images][hald-image].
 The core idea is simple: a sample hald image with a uniform color distribution
@@ -66,8 +65,8 @@ To generate and convert hald images, you will need git and a pip-enabled Python
 interpreter.
 
 ```bash
-$ git clone https://github.com/homm/color-transformations-reconstruction.git
-$ cd color-transformations-reconstruction
+$ git clone https://github.com/homm/color-filters-reconstruction.git
+$ cd color-filters-reconstruction
 $ pip install -r requirements.txt 
 ```
 
