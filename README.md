@@ -14,11 +14,11 @@ and [again](https://www.practicepython.org/blog/2016/12/20/instagram-filters-pyt
 And [again](https://code.tutsplus.com/tutorials/create-instagram-filters-with-php--net-24504)
 and [again](https://picturepan2.github.io/instagram.css/).
 The problem with the attempts is they mostly deal with manually correcting
-colors. For me, it was more interesting to find the solution using
-more robust method and math.
+colors. For me, it was more interesting to find a solution using
+a more robust method and maths.
 
-This looks like the only attempt to the accurate reconstruction
-of color filters.
+This looks like the only attempt to provide an accurate
+color filter reconstruction.
 For instance, one of the following images was obtained using Instagram filter,
 and another using an accurate reconstruction. Try guessing which one was
 reconstructed.
@@ -35,17 +35,18 @@ a commercial set of Instagram-like filters.
 
 ## How it works
 
-This method provides an accurate color reconstruction, and is based on
+This method provides an accurate color reconstruction and is based on
 [three-dimensional lookup tables][wiki-luts] and their two-dimensional
 representation: [hald images][hald-image].
 The core idea is simple: a sample hald image with a uniform color distribution
-is processed using target color filter with an unknown transformation algorithm.
+is processed using a target color filter with an unknown transformation algorithm.
 The processed hald image can then be used as a filter for a very accurate
 approximation of that target color transformation.
 
 A resulting hald image could then be used in various software such as
-GraphicsMagick or Adobe Photoshop. You can use it in your iOS or macOS apps 
-with [CocoaLUT][CocoaLUT]. Hald images could be converted to the
+GraphicsMagick or Adobe Photoshop.
+You can implement those hald images in your iOS or macOS app
+with [CocoaLUT][CocoaLUT]. Also, hald images could be converted to the
 3D LUT cube file format, which is common in a great number of video editing
 software.
 
